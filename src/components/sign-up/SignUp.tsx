@@ -120,7 +120,7 @@ export default function SignUp() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <SignUpContainer direction="column" justifyContent="space-between">
+            <SignUpContainer direction="column" justifyContent="space-between" data-testid="sign-up">
                 <Stack
                     direction="row"
                     justifyContent="space-between"
