@@ -9,9 +9,9 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import {Link} from 'gatsby'
 
 const tiers = [
     {
@@ -25,6 +25,20 @@ const tiers = [
         ],
         buttonText: 'Sign up for free',
         buttonVariant: 'outlined',
+        products: [
+            {
+                name: 'Free plan',
+                desc: 'Basic account without a subscription',
+                price: 0,
+                requiresShipping: false
+            },
+            {
+                name: 'Email support',
+                desc: 'Included in the Free plan',
+                price: 0,
+                requiresShipping: false
+            },
+        ]
     },
     {
         title: 'Professional',
@@ -40,6 +54,32 @@ const tiers = [
         ],
         buttonText: 'Start now',
         buttonVariant: 'contained',
+        products: [
+            {
+                name: 'Professional plan',
+                desc: 'Monthly subscription',
+                price: 15.00,
+                requiresShipping: false
+            },
+            {
+                name: 'Dedicated support',
+                desc: 'Included in the Professional plan',
+                price: 0,
+                requiresShipping: false
+            },
+            {
+                name: 'Hardware',
+                desc: 'Devices needed for development',
+                price: 69.99,
+                requiresShipping: true
+            },
+            {
+                name: 'Landing page template',
+                desc: 'License',
+                price: 49.99,
+                requiresShipping: false
+            },
+        ]
     },
     {
         title: 'Enterprise',
@@ -52,6 +92,26 @@ const tiers = [
         ],
         buttonText: 'Contact us',
         buttonVariant: 'outlined',
+        products: [
+            {
+                name: 'Professional plan',
+                desc: 'Annual subscription',
+                price: 250.00,
+                requiresShipping: false
+            },
+            {
+                name: 'Specialist support',
+                desc: 'Assigns a team of consultants for personalized issue remediation',
+                price: 100.00,
+                requiresShipping: false
+            },
+            {
+                name: 'Landing page template',
+                desc: 'License',
+                price: 49.99,
+                requiresShipping: false
+            },
+        ]
     },
 ];
 
@@ -196,13 +256,18 @@ export default function Pricing() {
                                 ))}
                             </CardContent>
                             <CardActions>
-                                <Button
-                                    href="/checkout"
-                                    fullWidth
-                                    variant={tier.buttonVariant as 'outlined' | 'contained'}
+                                <Link
+                                    to={"/checkout"}
+                                    state={{products: tier.products}}
                                 >
-                                    {tier.buttonText}
-                                </Button>
+                                    <Button
+
+                                        fullWidth
+                                        variant={tier.buttonVariant as 'outlined' | 'contained'}
+                                    >
+                                        {tier.buttonText}
+                                    </Button>
+                                </Link>
                             </CardActions>
                         </Card>
                     </Grid>

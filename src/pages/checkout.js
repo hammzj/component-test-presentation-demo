@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import Copyright from '../components/Copyright';
+import Divider from "@mui/material/Divider";
 import Checkout from "../components/checkout/Checkout";
 
-export default function CheckoutPage() {
-  return (
-    <Container>
-        <Checkout />
-        <Copyright />
-    </Container>
-  );
+export default function CheckoutPage({location}) {
+    return (
+        <Container>
+            <Checkout location={location}/>
+        </Container>
+    );
 }
