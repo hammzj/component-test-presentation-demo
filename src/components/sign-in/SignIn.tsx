@@ -17,7 +17,7 @@ import {ThemeProvider, createTheme, styled} from '@mui/material/styles';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 import ForgotPassword from './ForgotPassword';
-import getSignInTheme from './getSignInTheme';
+import getTheme from '../getTheme';
 import ToggleColorMode from './ToggleColorMode';
 import {GoogleIcon, FacebookIcon, SitemarkIcon} from './CustomIcons';
 
@@ -54,7 +54,7 @@ const SignInContainer = styled(Stack)(({theme}) => ({
 
 export default function SignIn() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
-    const defaultTheme = createTheme({palette: {mode}});
+    const theme = createTheme(getTheme(mode));
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
@@ -110,7 +110,7 @@ export default function SignIn() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline/>
             <SignInContainer direction="column" justifyContent="space-between">
                 <Stack
@@ -219,7 +219,7 @@ export default function SignIn() {
                                 Sign in
                             </Button>
                             <Link
-                                href="/sign-up"
+                                href="/src/pages/sign-up"
                                 variant="body2"
                                 sx={{alignSelf: 'center'}}
                             >

@@ -12,19 +12,20 @@ import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import Footer from './components/Footer';
+import Footer from '../Footer';
+import getTheme from "../getTheme";
 
 
 export default function LandingPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
-    const defaultTheme = createTheme({palette: {mode}});
+    const theme = createTheme(getTheme(mode));
 
     const toggleColorMode = () => {
         setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline/>
             <AppAppBar mode={mode} toggleColorMode={toggleColorMode}/>
             <Hero/>
@@ -40,7 +41,7 @@ export default function LandingPage() {
                 <Divider/>
                 <FAQ/>
                 <Divider/>
-                <Footer/>
+                <Footer isLandingPage={true}/>
             </Box>
         </ThemeProvider>
     );

@@ -15,10 +15,10 @@
     ]
   },
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "postinstall": "husky install && cypress install",
     "test:cypress:open": "cypress open --browser electron",
     "test:cypress:run:component": "cypress run --component  --browser electron",
@@ -28,13 +28,15 @@
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.5",
+    "@fontsource-variable/inter": "^5.0.18",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
-    "gatsby": "^5.13.6",
-    "gatsby-plugin-react-helmet": "^6.13.1",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-helmet": "latest"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -52,7 +54,6 @@
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "prettier": "^3.1.1",
-    "typescript": "^5.4.5"
+    "prettier": "^3.1.1"
   }
 }

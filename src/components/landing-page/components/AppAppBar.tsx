@@ -12,8 +12,7 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ToggleColorMode from './ToggleColorMode';
-
-import Sitemark from './SitemarkIcon';
+import Sitemark from '../../SitemarkIcon';
 
 interface AppAppBarProps {
     mode: PaletteMode;
@@ -135,10 +134,10 @@ export default function AppAppBar({mode, toggleColorMode}: AppAppBarProps) {
                         }}
                     >
                         <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode}/>
-                        <Button color="primary" variant="text" size="small">
+                        <Button color="primary" variant="text" size="small" href="/sign-in">
                             Sign in
                         </Button>
-                        <Button color="primary" variant="contained" size="small">
+                        <Button color="primary" variant="contained" size="small" href="/sign-up">
                             Sign up
                         </Button>
                     </Box>

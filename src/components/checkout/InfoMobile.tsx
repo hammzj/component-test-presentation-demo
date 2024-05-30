@@ -9,13 +9,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 import Info from './Info';
+import {doesCartRequireShipping} from "./utils";
 
 interface InfoProps {
-  totalPrice: string;
+  products: Products.CheckoutInfo[];
 }
 
-export default function InfoMobile({ totalPrice }: InfoProps) {
+export default function InfoMobile({ products }: InfoProps) {
   const [open, setOpen] = React.useState(false);
+  const isShippingRequired = doesCartRequireShipping(products)
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -29,7 +31,7 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
       >
         <CloseIcon />
       </IconButton>
-      <Info totalPrice={totalPrice} />
+      <Info products={products} displayShppingCost={isShippingRequired} />
     </Box>
   );
 

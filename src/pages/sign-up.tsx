@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Copyright from '../components/Copyright';
-import SignIn from "../components/sign-in/SignIn";
+import SignUp from "../components/sign-up/SignUp";
 
-export default function About() {
+export default function SignUpPage() {
   return (
     <Container>
-        <SignIn/>
+        <SignUp/>
         <Copyright />
     </Container>
   );

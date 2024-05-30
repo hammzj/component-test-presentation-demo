@@ -18,6 +18,7 @@ import {PaletteMode} from '@mui/material';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import {useLocation} from "react-router-dom";
 
 import AddressForm from './AddressForm';
 import Info from './Info';
@@ -25,8 +26,10 @@ import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from './ToggleColorMode';
-import SitemarkIcon from './SitemarkIcon';
+import SitemarkIcon from '../SitemarkIcon';
 import {getProducts, calculateTotalCost, formatAsCurrency} from "./utils";
+import Footer from "../Footer";
+import getTheme from "../getTheme";
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -43,10 +46,10 @@ function getStepContent(step: number, products: ReturnType<typeof getProducts>) 
     }
 }
 
-export default function Checkout({location}: { location: any }) {
+export default function Checkout() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
-    const defaultTheme = createTheme({palette: {mode}});
     const [activeStep, setActiveStep] = React.useState(0);
+    const theme = createTheme(getTheme(mode));
 
     const toggleColorMode = () => {
         setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -60,12 +63,12 @@ export default function Checkout({location}: { location: any }) {
         setActiveStep(activeStep - 1);
     };
 
-
+    const location = useLocation()
     const products = getProducts(location)
-    const needsShipping = activeStep >= 2
+    const displayShippingCost = activeStep >= 2
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline/>
             <Grid container sx={{height: {xs: '100%', sm: '100dvh'}}}>
                 <Grid
@@ -111,7 +114,7 @@ export default function Checkout({location}: { location: any }) {
                             maxWidth: 500,
                         }}
                     >
-                        <Info products={products} displayShppingCost={activeStep >= 2}/>
+                        <Info products={products} displayShppingCost={displayShippingCost}/>
                     </Box>
                 </Grid>
                 <Grid
@@ -212,10 +215,10 @@ export default function Checkout({location}: { location: any }) {
                                     Selected products
                                 </Typography>
                                 <Typography variant="body1">
-                                    {formatAsCurrency(calculateTotalCost(products, needsShipping))}
+                                    {formatAsCurrency(calculateTotalCost(products, displayShippingCost))}
                                 </Typography>
                             </div>
-                            <InfoMobile totalPrice={formatAsCurrency(calculateTotalCost(products, needsShipping))}/>
+                            <InfoMobile products={products}/>
                         </CardContent>
                     </Card>
                     <Box
@@ -327,6 +330,7 @@ export default function Checkout({location}: { location: any }) {
                         )}
                     </Box>
                 </Grid>
+                <Footer/>
             </Grid>
         </ThemeProvider>
     );

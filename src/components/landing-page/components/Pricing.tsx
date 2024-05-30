@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import {Link} from 'gatsby'
+import {Link} from 'react-router-dom'
 
 const tiers = [
     {
@@ -257,7 +257,7 @@ export default function Pricing() {
                             </CardContent>
                             <CardActions>
                                 <Link
-                                    to={"/checkout"}
+                                    to={"checkout"}
                                     state={{products: tier.products}}
                                 >
                                     <Button
