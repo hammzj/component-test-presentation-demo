@@ -1,5 +1,5 @@
 import React from "react";
-import Checkout from "../../../src_backup/components/checkout/Checkout";
+import Checkout from "../../../src/components/checkout/Checkout";
 
 describe('Checkout', function(){
     it('exists', function(){
