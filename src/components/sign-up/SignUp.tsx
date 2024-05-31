@@ -9,19 +9,15 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import {PaletteMode, Card as MuiCard} from '@mui/material';
 import {createTheme, ThemeProvider, styled} from '@mui/material/styles';
-
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 import getTheme from '../getTheme';
 import ToggleColorMode from './ToggleColorMode';
-import {GoogleIcon, FacebookIcon, SitemarkIcon} from './CustomIcons';
+import {GoogleIcon, FacebookIcon, SitemarkIcon} from '../CustomIcons';
 
 const Card = styled(MuiCard)(({theme}) => ({
     display: 'flex',
@@ -111,9 +107,9 @@ export default function SignUp() {
         const data = new FormData(event.currentTarget);
         console.log({
             name: data.get('name'),
-            lastName: data.get('lastName'),
             email: data.get('email'),
             password: data.get('password'),
+            allowExtraEmails: data.get('allowExtraEmails')
         });
     };
 
@@ -203,7 +199,7 @@ export default function SignUp() {
                                 />
                             </FormControl>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                control={<Checkbox value="on" name="allowExtraEmails" color="primary"/>}
                                 label="I want to receive updates via email."
                             />
                             <Button
@@ -215,7 +211,7 @@ export default function SignUp() {
                                 Sign up
                             </Button>
                             <Link
-                                href="/src/pages/sign-in"
+                                href="/sign-in"
                                 variant="body2"
                                 sx={{alignSelf: 'center'}}
                             >

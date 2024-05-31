@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["cypress", "cypress/support/index.d.ts"],
     "allowJs": true,
     "skipLibCheck": true,
     "declaration": true,
@@ -14,7 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react"
   },
   "include": ["src", "cypress"],
   "exclude": ["/node_modules", "build"]

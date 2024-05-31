@@ -1,4 +1,5 @@
 import React from "react";
+import chaiColors from 'chai-colors'
 import {MemoryRouter} from "react-router-dom";
 import {mount} from 'cypress/react18'
 import {MountReactComponentOptions} from "cypress/react";
@@ -9,17 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import './commands'
 import theme from "../../src/theme";
 
-// Augment the Cypress namespace to include type definitions for
-// your custom command.
-// Alternatively, can be defined in cypress/support/component.d.ts
-// with a <reference path="./component" /> at the top of your spec.
-declare global {
-    namespace Cypress {
-        interface Chainable {
-            mount: typeof mount
-        }
-    }
-}
+chai.use(chaiColors);
 
 interface MountOptions extends MountReactComponentOptions {
     routerProps?: {

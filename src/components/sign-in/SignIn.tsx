@@ -19,7 +19,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ForgotPassword from './ForgotPassword';
 import getTheme from '../getTheme';
 import ToggleColorMode from './ToggleColorMode';
-import {GoogleIcon, FacebookIcon, SitemarkIcon} from './CustomIcons';
+import {GoogleIcon, FacebookIcon, SitemarkIcon} from '../CustomIcons';
 
 const Card = styled(MuiCard)(({theme}) => ({
     display: 'flex',
@@ -79,6 +79,7 @@ export default function SignIn() {
         console.log({
             email: data.get('email'),
             password: data.get('password'),
+            remember: data.get('remember')
         });
     };
 
@@ -112,7 +113,7 @@ export default function SignIn() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <SignInContainer direction="column" justifyContent="space-between">
+            <SignInContainer direction="column" justifyContent="space-between" data-testid="sign-in">
                 <Stack
                     direction="row"
                     justifyContent="space-between"
@@ -206,7 +207,7 @@ export default function SignIn() {
                                 />
                             </FormControl>
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="primary"/>}
+                                control={<Checkbox value="on" name="remember" color="primary"/>}
                                 label="Remember me"
                             />
                             <ForgotPassword open={open} handleClose={handleClose}/>
@@ -219,7 +220,7 @@ export default function SignIn() {
                                 Sign in
                             </Button>
                             <Link
-                                href="/src/pages/sign-up"
+                                href="/sign-up"
                                 variant="body2"
                                 sx={{alignSelf: 'center'}}
                             >
