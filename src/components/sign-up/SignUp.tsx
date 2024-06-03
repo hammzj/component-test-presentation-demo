@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 import getTheme from "../getTheme";
-import ToggleColorMode from "./ToggleColorMode";
+import ToggleColorMode from "../ToggleColorMode";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "../CustomIcons";
 
 const Card = styled(MuiCard)(({ theme }) => ({

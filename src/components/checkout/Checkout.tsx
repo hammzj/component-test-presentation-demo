@@ -25,7 +25,7 @@ import Info from "./Info";
 import InfoMobile from "./InfoMobile";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
-import ToggleColorMode from "./ToggleColorMode";
+import ToggleColorMode from "../ToggleColorMode";
 import SitemarkIcon from "../SitemarkIcon";
 import { calculateTotalCost, formatAsCurrency } from "./utils";
 import { getProducts } from "../../services/products";
