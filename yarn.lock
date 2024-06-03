@@ -3590,6 +3590,11 @@ chai-colors@^1.0.1:
   dependencies:
     onecolor "~2.4.2"
 
+chai-in-viewport@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/chai-in-viewport/-/chai-in-viewport-1.0.3.tgz#76906f06d17b720b2ef2e88ac1ba48baa241e07b"
+  integrity sha512-JuIx41vawCM21zY+8588+4jNz0UBHZNuE4skfQCOy3C5mprH3O4jtEviKNx81wDqEVd2i/Opfm9MTWRNY0burg==
+
 chalk@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.3.0.tgz#67c20a7ebef70e7f3970a01f90fa210cb6860385"

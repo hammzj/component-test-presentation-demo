@@ -1,5 +1,4 @@
 import React from "react";
-import chaiColors from 'chai-colors'
 import {MemoryRouter} from "react-router-dom";
 import {mount} from 'cypress/react18'
 import {MountReactComponentOptions} from "cypress/react";
@@ -8,9 +7,8 @@ import {ThemeOptions} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import './commands'
+import './chai'
 import theme from "../../src/theme";
-
-chai.use(chaiColors);
 
 interface MountOptions extends MountReactComponentOptions {
     routerProps?: {

@@ -1,8 +1,8 @@
 [
   {
-    "name": "'Professional plan'",
+    "name": "Enterprise plan",
     "desc": "Annual subscription",
-    "price": 250.00,
+    "price": 360.00,
     "requiresShipping": false
   },
   {

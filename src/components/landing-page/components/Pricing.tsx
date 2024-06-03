@@ -93,14 +93,14 @@ const tiers = [
             'Help center access',
             'Phone & email support',
         ],
-        buttonText: 'Contact us',
+        buttonText: 'Inquire now',
         buttonVariant: 'outlined',
         productsType: 'enterprise-plan',
         products: [
             {
                 name: 'Professional plan',
                 desc: 'Annual subscription',
-                price: 250.00,
+                price: 360.00,
                 requiresShipping: false
             },
             {
@@ -152,6 +152,7 @@ export default function Pricing() {
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 {tiers.map((tier) => (
                     <Grid
+                        data-testid={`'pricing-card-${tier.title.toLowerCase().replace(/\s+/g, '-')}`}
                         item
                         key={tier.title}
                         xs={12}

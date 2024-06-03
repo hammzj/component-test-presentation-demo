@@ -7,7 +7,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import {formatAsCurrency, calculateTotalCost, calculateProductCost, doesCartRequireShipping, SHIPPING_COST_USD} from "./utils";
+import {
+    formatAsCurrency,
+    calculateTotalCost,
+    calculateProductCost,
+    doesCartRequireShipping,
+    SHIPPING_COST_USD
+} from "./utils";
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -24,16 +30,18 @@ export default function Review({products = []}: { products: Products.CheckoutInf
             <List disablePadding>
                 <ListItem sx={{py: 1, px: 0}}>
                     <ListItemText primary="Products" secondary={`${products.length} selected`}/>
-                    <Typography variant="body2">{formatAsCurrency(calculateProductCost(products))}</Typography>
+                    <Typography variant="body2"
+                                data-testid='products-cost'>{formatAsCurrency(calculateProductCost(products))}</Typography>
                 </ListItem>
                 {requiresShipping && (<ListItem sx={{py: 1, px: 0}}>
                     <ListItemText primary="Shipping" secondary="Plus taxes"/>
-                    <Typography variant="body2">{formatAsCurrency(SHIPPING_COST_USD)}</Typography>
+                    <Typography variant="body2"
+                                data-testid='shipping-cost'>{formatAsCurrency(SHIPPING_COST_USD)}</Typography>
                 </ListItem>)
                 }
                 <ListItem sx={{py: 1, px: 0}}>
                     <ListItemText primary="Total"/>
-                    <Typography variant="subtitle1" sx={{fontWeight: 700}}>
+                    <Typography variant="subtitle1" sx={{fontWeight: 700}} data-testid='total-cost'>
                         {formatAsCurrency(calculateTotalCost(products, requiresShipping))}
                     </Typography>
                 </ListItem>

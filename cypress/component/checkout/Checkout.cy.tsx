@@ -1,29 +1,5 @@
 import React from "react";
 import Checkout from "../../../src/components/checkout/Checkout";
-import {formatAsCurrency} from "../../../src/components/checkout/utils";
-
-const validateSidebarProduct = (product: Omit<Products.CheckoutInfo, 'requiresShipping'>) => {
-    cy.get(`[data-testid='checkout-info-section']`)
-        .within(() => {
-            cy.contains(`[data-testid="product-info"]`, product.name).as('product')
-            cy.get('@product')
-                .find('.MuiListItemText-primary')
-                .should('have.text', product.name)
-
-            if (product.desc !== '') {
-                cy.get('@product')
-                    .find('.MuiListItemText-secondary')
-                    .should('have.text', product.desc)
-            } else {
-                cy.get('@product')
-                    .find('.MuiListItemText-secondary').should('not.exist')
-            }
-
-            cy.get('@product')
-                .find('[data-testid="price"]')
-                .should('have.text', formatAsCurrency(product.price))
-        })
-}
 
 describe('Checkout', function () {
     it('exists', function () {
@@ -75,7 +51,7 @@ describe('Checkout', function () {
                     .should('exist')
                 cy.fixture('/products/checkout_info/custom-plan-products.json').then(fixture => {
 
-                    fixture.map((product: Products.CheckoutInfo) => validateSidebarProduct(product))
+                    fixture.map((product: Products.CheckoutInfo) => cy.assertCheckoutSidebarProduct(product))
                 })
             })
 
@@ -149,11 +125,11 @@ describe('Checkout', function () {
                 cy.mount(<Checkout/>)
 
                 //Assert: check that the description is not needed
-                validateSidebarProduct({name: 'Product 1', desc: '', price: 10.00})
+                cy.assertCheckoutSidebarProduct({name: 'Product 1', desc: '', price: 10.00})
             })
         })
 
-        context.only('Styling and theming', function () {
+        context('Styling and theming', function () {
             beforeEach(function () {
                 cy.mount(<Checkout/>)
             })
