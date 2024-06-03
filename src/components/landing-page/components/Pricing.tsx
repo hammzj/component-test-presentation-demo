@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import {Link} from 'react-router-dom'
+import {brand} from "../../../theme";
 
 const tiers = [
     {
@@ -25,6 +26,7 @@ const tiers = [
         ],
         buttonText: 'Sign up for free',
         buttonVariant: 'outlined',
+        productsType: 'free-plan',
         products: [
             {
                 name: 'Free plan',
@@ -54,6 +56,7 @@ const tiers = [
         ],
         buttonText: 'Start now',
         buttonVariant: 'contained',
+        productsType: 'professional-plan',
         products: [
             {
                 name: 'Professional plan',
@@ -92,6 +95,7 @@ const tiers = [
         ],
         buttonText: 'Contact us',
         buttonVariant: 'outlined',
+        productsType: 'enterprise-plan',
         products: [
             {
                 name: 'Professional plan',
@@ -164,10 +168,10 @@ export default function Pricing() {
                                     border: 'none',
                                     boxShadow:
                                         theme.palette.mode === 'light'
-                                            ? `0 8px 12px hsla(210, 98%, 42%, 0.2)`
-                                            : `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
+                                            ? `0 8px 12px ${brand[500]}`
+                                            : `0 8px 12px ${brand[700]}`,
                                     background:
-                                        'radial-gradient(circle at 50% 0%, hsl(210, 98%, 35%), hsl(210, 100%, 16%))',
+                                        `radial-gradient(circle at 50% 0%, ${brand[500]}, ${brand[700]})`,
                                 }),
                             })}
                         >
@@ -258,7 +262,7 @@ export default function Pricing() {
                             <CardActions>
                                 <Link
                                     to={"checkout"}
-                                    state={{products: tier.products}}
+                                    state={{type: tier.productsType}}
                                 >
                                     <Button
 

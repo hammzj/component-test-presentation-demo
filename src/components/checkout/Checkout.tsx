@@ -27,13 +27,15 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ToggleColorMode from './ToggleColorMode';
 import SitemarkIcon from '../SitemarkIcon';
-import {getProducts, calculateTotalCost, formatAsCurrency} from "./utils";
+import {calculateTotalCost, formatAsCurrency} from "./utils";
+import {getProducts} from "../../services/products";
 import Footer from "../Footer";
 import getTheme from "../getTheme";
+import {useEffect} from "react";
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step: number, products: ReturnType<typeof getProducts>) {
+function getStepContent(step: number, products: Products.CheckoutInfo[]) {
     switch (step) {
         case 0:
             return <AddressForm/>;
@@ -49,6 +51,8 @@ function getStepContent(step: number, products: ReturnType<typeof getProducts>) 
 export default function Checkout() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
     const [activeStep, setActiveStep] = React.useState(0);
+    const [products, setProducts] = React.useState([]);
+    const location = useLocation()
     const theme = createTheme(getTheme(mode));
 
     const toggleColorMode = () => {
@@ -63,14 +67,22 @@ export default function Checkout() {
         setActiveStep(activeStep - 1);
     };
 
-    const location = useLocation()
-    const products = getProducts(location)
+    useEffect(() => {
+        const retrieveProducts = async () => {
+            const p = await getProducts(location?.state?.type)
+            setProducts(p)
+        }
+        retrieveProducts();
+    }, []);
+
+    //const products = getProducts(location?.state)
+
     const displayShippingCost = activeStep >= 2
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <Grid container sx={{height: {xs: '100%', sm: '100dvh'}}}>
+            <Grid container sx={{height: {xs: '100%', sm: '100dvh'}}} data-testid='checkout'>
                 <Grid
                     item
                     xs={12}
@@ -89,6 +101,7 @@ export default function Checkout() {
                     }}
                 >
                     <Box
+                        data-testid='sidebar'
                         sx={{
                             display: 'flex',
                             alignItems: 'end',
@@ -106,6 +119,7 @@ export default function Checkout() {
                         </Button>
                     </Box>
                     <Box
+                        data-testid='checkout-info-section'
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -114,7 +128,7 @@ export default function Checkout() {
                             maxWidth: 500,
                         }}
                     >
-                        <Info products={products} displayShppingCost={displayShippingCost}/>
+                        <Info products={products} displayShippingCost={displayShippingCost}/>
                     </Box>
                 </Grid>
                 <Grid

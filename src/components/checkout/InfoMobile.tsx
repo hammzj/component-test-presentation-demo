@@ -31,12 +31,12 @@ export default function InfoMobile({ products }: InfoProps) {
       >
         <CloseIcon />
       </IconButton>
-      <Info products={products} displayShppingCost={isShippingRequired} />
+      <Info products={products} displayShippingCost={isShippingRequired} />
     </Box>
   );
 
   return (
-    <div>
+    <div data-testid='checkout-info-section-mobile'>
       <Button
         variant="text"
         endIcon={<ExpandMoreRoundedIcon />}

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "'Professional plan'",
+    "desc": "Annual subscription",
+    "price": 250.00,
+    "requiresShipping": false
+  },
+  {
+    "name": "Specialist support",
+    "desc": "Assigns a team of consultants for personalized issue remediation",
+    "price": 100.00,
+    "requiresShipping": false
+  },  {
+    "name": "Landing page template",
+    "desc": "License",
+    "price": 49.99,
+    "requiresShipping": false
+  }
+]

@@ -31,6 +31,7 @@
     "@fontsource-variable/inter": "^5.0.18",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
+    "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
@@ -40,7 +41,10 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.6",
     "@babel/plugin-transform-private-property-in-object": "^7.23.3",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.3",
