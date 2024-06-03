@@ -1,26 +1,26 @@
 [
-  {
-    "name": "Professional plan",
-    "desc": "Monthly subscription",
-    "price": 15.00,
-    "requiresShipping": false
-  },
-  {
-    "name": "Dedicated support",
-    "desc": "Included in the Professional plan",
-    "price": 0,
-    "requiresShipping": false
-  },
-  {
-    "name": "Hardware",
-    "desc": "Devices needed for development",
-    "price": 69.99,
-    "requiresShipping": true
-  },
-  {
-    "name": "Landing page template",
-    "desc": "License",
-    "price": 49.99,
-    "requiresShipping": false
-  }
+    {
+        "name": "Professional plan",
+        "desc": "Monthly subscription",
+        "price": 15.0,
+        "requiresShipping": false
+    },
+    {
+        "name": "Dedicated support",
+        "desc": "Included in the Professional plan",
+        "price": 0,
+        "requiresShipping": false
+    },
+    {
+        "name": "Hardware",
+        "desc": "Devices needed for development",
+        "price": 69.99,
+        "requiresShipping": true
+    },
+    {
+        "name": "Landing page template",
+        "desc": "License",
+        "price": 49.99,
+        "requiresShipping": false
+    }
 ]

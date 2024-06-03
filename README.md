@@ -15,7 +15,6 @@ are available to be opened and executed.
 
 The component tests can also be run by `yarn run test:cypress:run:component`.
 
-
 ### End-to-end tests
 
 Firstly, launch the application on localhost with `yarn start`. This will open the application on `http://localhost:3000`.
@@ -25,12 +24,11 @@ are available to be opened and executed.
 
 The e2e tests can also be run by `yarn run test:cypress:run:e2e`.
 
-
-*** 
+---
 
 Author: Zachary J. Hamm, June 2024
 
-*** 
+---
 
 # Material UI - Create React App example in TypeScript
 

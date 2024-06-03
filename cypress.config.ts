@@ -1,4 +1,4 @@
-import {defineConfig} from "cypress";
+import { defineConfig } from "cypress";
 
 export default defineConfig({
     component: {
@@ -20,7 +20,7 @@ export default defineConfig({
                                     plugins: [
                                         [
                                             "@babel/plugin-transform-modules-commonjs",
-                                            {loose: true},
+                                            { loose: true },
                                         ],
                                     ],
                                 },
@@ -36,6 +36,6 @@ export default defineConfig({
     },
 
     e2e: {
-        baseUrl: 'http://localhost:3000/'
+        baseUrl: "http://localhost:3000/",
     },
 });

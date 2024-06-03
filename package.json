@@ -1,65 +1,67 @@
 {
-  "name": "component-test-presentation-demo",
-  "version": "1.0.0",
-  "private": false,
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "husky install && cypress install",
-    "test:cypress:open": "cypress open --browser electron",
-    "test:cypress:run:component": "cypress run --component --browser electron",
-    "test:cypress:run:e2e": "cypress run --e2e --browser electron"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.11.5",
-    "@fontsource-variable/inter": "^5.0.18",
-    "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.15.19",
-    "axios": "^1.7.2",
-    "chai-colors": "^1.0.1",
-    "chai-in-viewport": "^1.0.3",
-    "cypress": "^13.10.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.23.1",
-    "react-scripts": "^5.0.1",
-    "typescript": "^5.4.5"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/plugin-transform-modules-commonjs": "^7.24.6",
-    "@babel/plugin-transform-private-property-in-object": "^7.23.3",
-    "@babel/preset-env": "^7.24.6",
-    "@babel/preset-react": "^7.24.6",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.12.7",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "eslint": "^8.42.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-mocha": "^10.2.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
-    "prettier": "^3.1.1"
-  }
+    "name": "component-test-presentation-demo",
+    "version": "1.0.0",
+    "private": false,
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "postinstall": "husky install && cypress install",
+        "dev:lint": "eslint .",
+        "dev:prettier": "prettier -w . --config .prettierrc.json",
+        "test:cypress:open": "cypress open --browser electron",
+        "test:cypress:run:component": "cypress run --component --browser electron",
+        "test:cypress:run:e2e": "cypress run --e2e --browser electron"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.11.4",
+        "@emotion/server": "^11.11.0",
+        "@emotion/styled": "^11.11.5",
+        "@fontsource-variable/inter": "^5.0.18",
+        "@mui/icons-material": "^5.15.19",
+        "@mui/material": "^5.15.19",
+        "axios": "^1.7.2",
+        "chai-colors": "^1.0.1",
+        "chai-in-viewport": "^1.0.3",
+        "cypress": "^13.10.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-helmet": "^6.1.0",
+        "react-router-dom": "^6.23.1",
+        "react-scripts": "^5.0.1",
+        "typescript": "^5.4.5"
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@babel/plugin-transform-modules-commonjs": "^7.24.6",
+        "@babel/plugin-transform-private-property-in-object": "^7.23.3",
+        "@babel/preset-env": "^7.24.6",
+        "@babel/preset-react": "^7.24.6",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "^20.12.7",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@typescript-eslint/eslint-plugin": "^6.18.1",
+        "@typescript-eslint/parser": "^6.18.1",
+        "eslint": "^8.42.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-mocha": "^10.4.3",
+        "eslint-plugin-prettier": "^5.0.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.2",
+        "prettier": "^3.1.1"
+    }
 }

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import * as React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages";
 import CheckoutPage from "./pages/checkout";
 import SignUpPage from "./pages/sign-up";
@@ -8,30 +8,30 @@ import AboutPage from "./pages/about";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Index/>,
+        element: <Index />,
     },
     {
         path: "/checkout",
-        element: <CheckoutPage/>,
+        element: <CheckoutPage />,
     },
     {
         path: "/sign-up",
-        element: <SignUpPage/>,
+        element: <SignUpPage />,
     },
     {
         path: "/sign-in",
-        element: <SignInPage/>,
+        element: <SignInPage />,
     },
     {
         path: "/about",
-        element: <AboutPage/>,
+        element: <AboutPage />,
     },
 ]);
 
 export default function App() {
     return (
         <>
-            <RouterProvider router={router}/>
+            <RouterProvider router={router} />
         </>
     );
 }

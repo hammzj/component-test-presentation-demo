@@ -1,163 +1,183 @@
 import React from "react";
 import Checkout from "../../../src/components/checkout/Checkout";
 
-describe('Checkout', function () {
-    it('exists', function () {
-        cy.mount(<Checkout/>)
-        cy.get('[data-testid=checkout]').should('exist')
-    })
+describe("Checkout", function () {
+    it("exists", function () {
+        cy.mount(<Checkout />);
+        cy.get("[data-testid=checkout]").should("exist");
+    });
 
-    describe('sidebar', function () {
-        context('HTML rendering', function () {
-            it('has a Back button to the index page', function () {
-                cy.mount(<Checkout/>)
+    describe("sidebar", function () {
+        context("HTML rendering", function () {
+            it("has a Back button to the index page", function () {
+                cy.mount(<Checkout />);
 
-                cy.get('[data-testid=sidebar]')
-                    .contains('a', 'Back to')
-                    .should('exist')
-                    .invoke('attr', 'href').should('eq', '/')
-                cy.contains('a', 'Back to').find("svg#company-icon").should('exist')
-            })
+                cy.get("[data-testid=sidebar]")
+                    .contains("a", "Back to")
+                    .should("exist")
+                    .invoke("attr", "href")
+                    .should("eq", "/");
+                cy.contains("a", "Back to").find("svg#company-icon").should("exist");
+            });
 
-            it('has a section for the checkout information', function () {
-                cy.get('[data-testid=sidebar]')
+            it("has a section for the checkout information", function () {
+                cy.get("[data-testid=sidebar]")
                     .find(`[data-testid='checkout-info-section']`)
-                    .should('exist')
-            })
+                    .should("exist");
+            });
 
-            it('will default the sidebar as empty when no products are provided', function () {
-                cy.mount(<Checkout/>)
+            it("will default the sidebar as empty when no products are provided", function () {
+                cy.mount(<Checkout />);
                 cy.get(`[data-testid='checkout-info-section']`)
                     .find(`[data-testid='cart-is-empty-message']`)
-                    .should('have.text', "Cart is empty!")
+                    .should("have.text", "Cart is empty!");
 
                 cy.get(`[data-testid='checkout-info-section']`)
                     .find(`[data-testid='total-price']`)
-                    .should('not.exist')
-            })
-        })
+                    .should("not.exist");
+            });
+        });
 
-        context('State management and hooks', function () {
-            it('loads product details in the sidebar', function () {
+        context("State management and hooks", function () {
+            it("loads product details in the sidebar", function () {
                 //Arrange
                 //This test uses a custom intercept to load products from a Cypress fixture
-                const fixtureFileName = '/products/checkout_info/custom-plan-products.json'
-                cy.intercept('**/products/*', {fixture: fixtureFileName})
-                cy.mount(<Checkout/>)
+                const fixtureFileName = "/products/checkout_info/custom-plan-products.json";
+                cy.intercept("**/products/*", { fixture: fixtureFileName });
+                cy.mount(<Checkout />);
 
                 //Assert: total price is displayed and each product is rendered
                 cy.get(`[data-testid='checkout-info-section']`)
                     .find(`[data-testid='total-price']`)
-                    .should('exist')
-                cy.fixture('/products/checkout_info/custom-plan-products.json').then(fixture => {
+                    .should("exist");
+                cy.fixture("/products/checkout_info/custom-plan-products.json").then((fixture) => {
+                    fixture.map((product: Products.CheckoutInfo) =>
+                        cy.assertCheckoutSidebarProduct(product)
+                    );
+                });
+            });
 
-                    fixture.map((product: Products.CheckoutInfo) => cy.assertCheckoutSidebarProduct(product))
-                })
-            })
-
-            it('shows the total price of the products in the sidebar', function () {
+            it("shows the total price of the products in the sidebar", function () {
                 //This test uses a custom intercept to load products from a Cypress fixture
-                cy.intercept('**/products/*', {fixture: 'products/checkout_info/custom-plan-products.json'})
-                cy.mount(<Checkout/>)
-                cy.get(`[data-testid='total-price']`).should('have.text', '$143.99')
-            })
-        })
+                cy.intercept("**/products/*", {
+                    fixture: "products/checkout_info/custom-plan-products.json",
+                });
+                cy.mount(<Checkout />);
+                cy.get(`[data-testid='total-price']`).should("have.text", "$143.99");
+            });
+        });
 
-        context('Functionality and events', function () {
-            it('adds the shipping cost to the total cost on the last step', function () {
+        context("Functionality and events", function () {
+            it("adds the shipping cost to the total cost on the last step", function () {
                 //Arrange
-                cy.intercept('**/products/*', {fixture: 'products/checkout_info/custom-plan-products.json'})
-                cy.mount(<Checkout/>)
+                cy.intercept("**/products/*", {
+                    fixture: "products/checkout_info/custom-plan-products.json",
+                });
+                cy.mount(<Checkout />);
 
                 //Act
-                cy.contains('button', 'Next').click();
-                cy.contains('button', 'Next').click();
-                cy.contains('button', 'Place order').should('be.visible');
+                cy.contains("button", "Next").click();
+                cy.contains("button", "Next").click();
+                cy.contains("button", "Place order").should("be.visible");
 
                 //Shipping is $9.99
-                cy.get(`[data-testid='total-price']`).should('have.text', '$153.98')
-            })
+                cy.get(`[data-testid='total-price']`).should("have.text", "$153.98");
+            });
 
-            it('removes the shipping cost when navigating back from the last step', function () {
+            it("removes the shipping cost when navigating back from the last step", function () {
                 //Arrange
-                cy.intercept('**/products/*', req => {
+                cy.intercept("**/products/*", (req) => {
                     req.reply({
-                        body: [{
-                            name: "Product 1",
-                            desc: 'TEST',
-                            price: 10.00,
-                            requiresShipping: true
-                        }]
-                    })
-                })
-                cy.mount(<Checkout/>)
+                        body: [
+                            {
+                                name: "Product 1",
+                                desc: "TEST",
+                                price: 10.0,
+                                requiresShipping: true,
+                            },
+                        ],
+                    });
+                });
+                cy.mount(<Checkout />);
 
                 //Act
-                cy.contains('button', 'Next').click();
-                cy.contains('button', 'Next').click();
-                cy.contains('button', 'Place order').should('be.visible');
-                cy.get(`[data-testid='total-price']`).should('have.text', '$19.99');
+                cy.contains("button", "Next").click();
+                cy.contains("button", "Next").click();
+                cy.contains("button", "Place order").should("be.visible");
+                cy.get(`[data-testid='total-price']`).should("have.text", "$19.99");
 
-                cy.contains('button', 'Previous').click();
-                cy.get(`[data-testid='total-price']`).should('have.text', '$10.00');
+                cy.contains("button", "Previous").click();
+                cy.get(`[data-testid='total-price']`).should("have.text", "$10.00");
 
-                cy.contains('button', 'Previous').click();
-                cy.get(`[data-testid='total-price']`).should('have.text', '$10.00');
-            })
-        })
+                cy.contains("button", "Previous").click();
+                cy.get(`[data-testid='total-price']`).should("have.text", "$10.00");
+            });
+        });
 
-        context('Data validation', function () {
+        context("Data validation", function () {
             //Technically, this could be considered an HTML rendering test, but this
             //is to show that a component will not error on rendering
-            it('does not require a description for a product', function () {
+            it("does not require a description for a product", function () {
                 //Arrange: use a single product without a description
-                cy.intercept('**/products/*', req => {
+                cy.intercept("**/products/*", (req) => {
                     req.reply({
-                        body: [{
-                            name: "Product 1",
-                            price: 10.00,
-                            requiresShipping: false
-                        }]
-                    })
-                })
+                        body: [
+                            {
+                                name: "Product 1",
+                                price: 10.0,
+                                requiresShipping: false,
+                            },
+                        ],
+                    });
+                });
 
                 //Act: mount the component
-                cy.mount(<Checkout/>)
+                cy.mount(<Checkout />);
 
                 //Assert: check that the description is not needed
-                cy.assertCheckoutSidebarProduct({name: 'Product 1', desc: '', price: 10.00})
-            })
-        })
+                cy.assertCheckoutSidebarProduct({ name: "Product 1", desc: "", price: 10.0 });
+            });
+        });
 
-        context('Styling and theming', function () {
+        context("Styling and theming", function () {
             beforeEach(function () {
-                cy.mount(<Checkout/>)
-            })
+                cy.mount(<Checkout />);
+            });
 
-            it('renders with the theme on light mode on load', function () {
+            it("renders with the theme on light mode on load", function () {
                 //MuiPaper-root is the actual card
                 cy.get(`[data-testid='checkout-info-section']`)
-                    .parents('.MuiGrid-root')
-                    .find('.MuiPaper-root')
-                    .should("have.css", "background-color", 'rgb(251, 252, 254)')
-            })
+                    .parents(".MuiGrid-root")
+                    .find(".MuiPaper-root")
+                    .should("have.css", "background-color", "rgb(251, 252, 254)");
+            });
 
-            it('can be toggled between light and dark modes', function () {
+            it("can be toggled between light and dark modes", function () {
                 //This test is unreliable -- testing theming like this is unstable
-                cy.get('button[aria-label="Theme toggle button"]').filter(':visible').as('themeToggleButton')
+                cy.get('button[aria-label="Theme toggle button"]')
+                    .filter(":visible")
+                    .as("themeToggleButton");
                 cy.get(`[data-testid='checkout-info-section']`)
-                    .parents('.MuiGrid-root')
-                    .as('sidebarBackground')
+                    .parents(".MuiGrid-root")
+                    .as("sidebarBackground");
 
-                cy.get('@themeToggleButton').click();
+                cy.get("@themeToggleButton").click();
 
-                cy.wait(500)
-                cy.get('@sidebarBackground').should("have.css", "background-color", 'rgb(31, 36, 46)')
+                cy.wait(500);
+                cy.get("@sidebarBackground").should(
+                    "have.css",
+                    "background-color",
+                    "rgb(31, 36, 46)"
+                );
 
-                cy.get('@themeToggleButton').click();
-                cy.wait(1000)
-                cy.get('@sidebarBackground').should("have.css", "background-color", 'rgb(234, 238, 245)')
-            })
-        })
-    })
-})
+                cy.get("@themeToggleButton").click();
+                cy.wait(1000);
+                cy.get("@sidebarBackground").should(
+                    "have.css",
+                    "background-color",
+                    "rgb(234, 238, 245)"
+                );
+            });
+        });
+    });
+});
