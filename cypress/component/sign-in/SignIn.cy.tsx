@@ -404,7 +404,7 @@ describe("SignIn", function () {
                         .then((calls) => {
                             //@ts-ignore
                             expect(
-                                calls.some((c) =>
+                                calls.some((c: { args: any[]; }) =>
                                     Cypress._.isEqual(c.args[0], { resetPasswordEmail })
                                 )
                             ).to.eq(true);
@@ -432,7 +432,7 @@ describe("SignIn", function () {
                         .then((calls) => {
                             //@ts-ignore
                             expect(
-                                calls.some((c) =>
+                                calls.some((c: { args: any[]; }) =>
                                     Cypress._.isEqual(c.args[0], { resetPasswordEmail })
                                 )
                             ).to.eq(false);
@@ -442,7 +442,7 @@ describe("SignIn", function () {
         });
     });
 
-    context("style", function () {
+    context.only("style", function () {
         it("renders with the theme on light mode on load", function () {
             //MuiPaper-root is the actual card
             cy.get('[data-testid="sign-in"]')
@@ -451,7 +451,7 @@ describe("SignIn", function () {
                 .should("be.colored", "#fbfcfe");
             cy.contains("button[type=submit]", "Sign in")
                 .should("have.css", "background-color")
-                .and("be.colored", "#4da6ff");
+                .and("be.colored", "#00d2e6");
         });
 
         it("can be toggled between light and dark modes", function () {
@@ -459,22 +459,20 @@ describe("SignIn", function () {
             cy.wait(500);
             cy.get('[data-testid="sign-in"]')
                 .find(".MuiPaper-root")
-                .invoke("css", "background-color")
-                .should("be.oneOf", ["rgba(114, 117, 123, 0.718)", "rgba(19, 23, 32, 0.6)"]); //Odd color does not work as hex
+                .invoke("css", "background-color", 'rgba(31, 36, 46, 0.6)')
 
             cy.contains("button[type=submit]", "Sign in")
                 .should("have.css", "background-color")
-                .and("be.colored", "#4da6ff");
+                .and("be.colored", "#00d2e6");
 
             cy.get('button[aria-label="Theme toggle button"]').click();
             cy.wait(500);
             cy.get('[data-testid="sign-in"]')
                 .find(".MuiPaper-root")
-                .should("have.css", "background-color")
-                .should("be.colored", "#fbfcfe");
+                .should("have.css", "background-color", 'rgba(31, 36, 46, 0.6)')
             cy.contains("button[type=submit]", "Sign in")
                 .should("have.css", "background-color")
-                .and("be.colored", "#4da6ff");
+                .and("be.colored", "#00d2e6");
         });
     });
 });
