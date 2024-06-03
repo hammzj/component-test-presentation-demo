@@ -442,7 +442,7 @@ describe("SignIn", function () {
         });
     });
 
-    context.only("style", function () {
+    context("style", function () {
         it("renders with the theme on light mode on load", function () {
             //MuiPaper-root is the actual card
             cy.get('[data-testid="sign-in"]')
