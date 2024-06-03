@@ -21,8 +21,9 @@ describe("Checkout", function () {
             });
 
             it("has a section for the checkout information", function () {
+                cy.mount(<Checkout />);
                 cy.get("[data-testid=sidebar]")
-                    .find(`[data-testid='checkout-info-section']`)
+                    .find(`[data-testid="checkout-info-section"]`)
                     .should("exist");
             });
 

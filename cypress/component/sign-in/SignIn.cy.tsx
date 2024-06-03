@@ -404,7 +404,7 @@ describe("SignIn", function () {
                         .then((calls) => {
                             //@ts-ignore
                             expect(
-                                calls.some((c: { args: any[]; }) =>
+                                calls.some((c: { args: any[] }) =>
                                     Cypress._.isEqual(c.args[0], { resetPasswordEmail })
                                 )
                             ).to.eq(true);
@@ -432,7 +432,7 @@ describe("SignIn", function () {
                         .then((calls) => {
                             //@ts-ignore
                             expect(
-                                calls.some((c: { args: any[]; }) =>
+                                calls.some((c: { args: any[] }) =>
                                     Cypress._.isEqual(c.args[0], { resetPasswordEmail })
                                 )
                             ).to.eq(false);
@@ -459,7 +459,7 @@ describe("SignIn", function () {
             cy.wait(500);
             cy.get('[data-testid="sign-in"]')
                 .find(".MuiPaper-root")
-                .invoke("css", "background-color", 'rgba(31, 36, 46, 0.6)')
+                .invoke("css", "background-color", "rgba(31, 36, 46, 0.6)");
 
             cy.contains("button[type=submit]", "Sign in")
                 .should("have.css", "background-color")
@@ -469,7 +469,7 @@ describe("SignIn", function () {
             cy.wait(500);
             cy.get('[data-testid="sign-in"]')
                 .find(".MuiPaper-root")
-                .should("have.css", "background-color", 'rgba(31, 36, 46, 0.6)')
+                .should("have.css", "background-color", "rgba(31, 36, 46, 0.6)");
             cy.contains("button[type=submit]", "Sign in")
                 .should("have.css", "background-color")
                 .and("be.colored", "#00d2e6");

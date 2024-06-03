@@ -221,7 +221,7 @@ describe("SignUp", function () {
     });
 
     context("state management", function () {
-        it("captures data when submitting the form", function () {
+        it.only("captures data when submitting the form", function () {
             //Arrange
             /*
             Clicking the button just sends a console.log statement
@@ -229,9 +229,6 @@ describe("SignUp", function () {
             Usually it's not this complex as we can test the form data
              */
             cy.spyConsoleLog();
-
-            //We need to re-render the mount now
-            cy.mount(<SignUp />);
 
             const valueSets = [
                 {
@@ -249,6 +246,9 @@ describe("SignUp", function () {
             ];
 
             valueSets.forEach((values) => {
+                //We need to re-render the mount each time
+                cy.mount(<SignUp />);
+
                 //Act
                 cy.get("input#name").type(values.name);
                 cy.get("input#email").type(values.email);

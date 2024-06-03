@@ -2,11 +2,12 @@
 
 This is the repository of the demo application that includes component testing by the Cypress framework.
 
-The demo app is build with free, open-source templates from Material UI to construct a React application using "create-react-app": 
+The demo app is build with free, open-source templates from Material UI to construct a React application using "create-react-app":
 Please see here for more information:
-* https://github.com/mui/material-ui
-* https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-ts
-* https://mui.com/material-ui/getting-started/templates/
+
+-   https://github.com/mui/material-ui
+-   https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-ts
+-   https://mui.com/material-ui/getting-started/templates/
 
 ## Installation
 

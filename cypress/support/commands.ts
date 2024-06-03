@@ -1,6 +1,6 @@
 // @ts-ignore
-import {slowCypressDown} from 'cypress-slow-down'
-import {formatAsCurrency} from "../../src/components/checkout/utils";
+import { slowCypressDown } from "cypress-slow-down";
+import { formatAsCurrency } from "../../src/components/checkout/utils";
 
 Cypress.Commands.add("spyConsoleLog", function () {
     //See here: https://glebbahmutov.com/cypress-examples/recipes/check-console-logs.html#check-at-the-end-of-the-test
@@ -37,7 +37,6 @@ Cypress.Commands.add("assertCountOfCheckoutSidebarProducts", function (count: nu
     });
 });
 
-
-if (Cypress.env('COMMAND_DELAY')) {
-    slowCypressDown(Cypress.env('COMMAND_DELAY') || 0, false)
+if (Cypress.env("COMMAND_DELAY")) {
+    slowCypressDown(Cypress.env("COMMAND_DELAY") || 0, false);
 }

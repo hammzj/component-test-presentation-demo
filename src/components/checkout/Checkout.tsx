@@ -85,6 +85,7 @@ export default function Checkout() {
             <Grid container sx={{ height: { xs: "100%", sm: "100dvh" } }} data-testid='checkout'>
                 <Grid
                     item
+                    data-testid='sidebar'
                     xs={12}
                     sm={5}
                     lg={4}
@@ -100,7 +101,6 @@ export default function Checkout() {
                         gap: 4,
                     }}>
                     <Box
-                        data-testid='sidebar'
                         sx={{
                             display: "flex",
                             alignItems: "end",
