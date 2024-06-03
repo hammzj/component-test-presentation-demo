@@ -1,37 +1,37 @@
-/// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+// @ts-ignore
+import { formatAsCurrency } from "../../src/components/checkout/utils";
+
+Cypress.Commands.add("spyConsoleLog", function () {
+    //See here: https://glebbahmutov.com/cypress-examples/recipes/check-console-logs.html#check-at-the-end-of-the-test
+    cy.window().then((win) => {
+        cy.spy(win.console, "log").as("log");
+    });
+});
+
+Cypress.Commands.add(
+    "assertCheckoutSidebarProduct",
+    function (product: Omit<Products.CheckoutInfo, "requiresShipping">) {
+        cy.get(`[data-testid='checkout-info-section']`).within(() => {
+            cy.contains(`[data-testid="product-info"]`, product.name).as("product");
+            cy.get("@product").find(".MuiListItemText-primary").should("have.text", product.name);
+
+            if (product.desc !== "") {
+                cy.get("@product")
+                    .find(".MuiListItemText-secondary")
+                    .should("have.text", product.desc);
+            } else {
+                cy.get("@product").find(".MuiListItemText-secondary").should("not.exist");
+            }
+
+            cy.get("@product")
+                .find('[data-testid="price"]')
+                .should("have.text", formatAsCurrency(product.price));
+        });
+    }
+);
+
+Cypress.Commands.add("assertCountOfCheckoutSidebarProducts", function (count: number) {
+    cy.get(`[data-testid='checkout-info-section']`).within(() => {
+        cy.get(`[data-testid="product-info"]`).should("have.length", count);
+    });
+});

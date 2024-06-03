@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Free plan",
+        "desc": "Basic account without a subscription",
+        "price": 0,
+        "requiresShipping": false
+    },
+    {
+        "name": "Email support",
+        "desc": "Included in the Free plan",
+        "price": 0,
+        "requiresShipping": false
+    }
+]

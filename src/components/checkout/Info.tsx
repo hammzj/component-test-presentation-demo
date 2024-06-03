@@ -1,60 +1,56 @@
-import * as React from 'react';
+import * as React from "react";
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-
-const products = [
-  {
-    name: 'Professional plan',
-    desc: 'Monthly subscription',
-    price: '$15.00',
-  },
-  {
-    name: 'Dedicated support',
-    desc: 'Included in the Professional plan',
-    price: 'Free',
-  },
-  {
-    name: 'Hardware',
-    desc: 'Devices needed for development',
-    price: '$69.99',
-  },
-  {
-    name: 'Landing page template',
-    desc: 'License',
-    price: '$49.99',
-  },
-];
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
+import { calculateTotalCost, formatAsCurrency } from "./utils";
 
 interface InfoProps {
-  totalPrice: string;
+    products: Products.CheckoutInfo[];
+    displayShippingCost: boolean;
 }
 
-export default function Info({ totalPrice }: InfoProps) {
-  return (
-    <React.Fragment>
-      <Typography variant="subtitle2" color="text.secondary">
-        Total
-      </Typography>
-      <Typography variant="h4" gutterBottom>
-        {totalPrice}
-      </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText
-              sx={{ mr: 2 }}
-              primary={product.name}
-              secondary={product.desc}
-            />
-            <Typography variant="body1" fontWeight="medium">
-              {product.price}
+const TotalPrice = ({ products, displayShippingCost }: InfoProps) => {
+    const totalPrice = formatAsCurrency(calculateTotalCost(products, displayShippingCost));
+    if (products.length > 0) {
+        return (
+            <>
+                <Typography variant='subtitle2' color='text.secondary'>
+                    Total
+                </Typography>
+                <Typography variant='h4' gutterBottom data-testid='total-price'>
+                    {totalPrice}
+                </Typography>
+            </>
+        );
+    } else {
+        return (
+            <Typography variant='h4' gutterBottom data-testid='cart-is-empty-message'>
+                Cart is empty!
             </Typography>
-          </ListItem>
-        ))}
-      </List>
-    </React.Fragment>
-  );
+        );
+    }
+};
+
+export default function Info({ products, displayShippingCost }: InfoProps) {
+    return (
+        <React.Fragment>
+            <TotalPrice products={products} displayShippingCost={displayShippingCost} />
+            <List disablePadding>
+                {products.map((product) => (
+                    <ListItem key={product.name} sx={{ py: 1, px: 0 }} data-testid='product-info'>
+                        <ListItemText
+                            sx={{ mr: 2 }}
+                            primary={product.name}
+                            secondary={product.desc}
+                        />
+                        <Typography variant='body1' fontWeight='medium' data-testid='price'>
+                            {formatAsCurrency(product.price)}
+                        </Typography>
+                    </ListItem>
+                ))}
+            </List>
+        </React.Fragment>
+    );
 }

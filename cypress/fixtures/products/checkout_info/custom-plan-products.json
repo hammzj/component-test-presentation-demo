@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Teaching plan",
+        "desc": "One-time purchase",
+        "price": 99.0,
+        "requiresShipping": false
+    },
+    {
+        "name": "Email support",
+        "desc": "Included in the plan",
+        "price": 0,
+        "requiresShipping": false
+    },
+    {
+        "name": "Product guidebook",
+        "desc": "Full-color guidebook on teaching the course",
+        "price": 15.0,
+        "requiresShipping": true
+    },
+    {
+        "name": "Digital presentations",
+        "desc": "Slide decks to use in class",
+        "price": 29.99,
+        "requiresShipping": false
+    }
+]
