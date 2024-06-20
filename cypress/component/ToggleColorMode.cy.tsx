@@ -13,7 +13,7 @@ const ToggleColorModeRenderer = (
 };
 
 describe("ToggleColorMode", function () {
-    it("renders with a moon icon when on light mode", function () {
+    it("renders with a moon icon when on light mode, to denote it can switch to dark mode", function () {
         //This component is rendered with static props given to it
         cy.mount(<ToggleColorModeRenderer initialMode='light' />);
         cy.get('button[aria-label="Theme toggle button"]')
@@ -21,7 +21,7 @@ describe("ToggleColorMode", function () {
             .should("exist");
     });
 
-    it("renders with a moon icon when on dark mode", function () {
+    it("renders with a sun icon when on dark mode, to denote it can switch to light mode", function () {
         //This component is rendered with static props given to it
         cy.mount(<ToggleColorModeRenderer initialMode='dark' />);
         cy.get('button[aria-label="Theme toggle button"]')

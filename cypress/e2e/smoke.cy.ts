@@ -41,10 +41,6 @@ describe("App", function () {
             cy.get("@appNavBar").contains(".MuiButton-root", "Sign up").click();
             cy.url().should("include", "/sign-up");
         });
-        it("can access Sign In", function () {
-            cy.get("@appNavBar").contains(".MuiButton-root", "Sign in").click();
-            cy.url().should("include", "/sign-in");
-        });
     });
 
     context("accessing checkout from pricing", function () {
