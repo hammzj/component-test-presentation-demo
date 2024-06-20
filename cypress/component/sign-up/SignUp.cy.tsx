@@ -221,7 +221,7 @@ describe("SignUp", function () {
     });
 
     context("state management", function () {
-        it.only("captures data when submitting the form", function () {
+        it("captures data when submitting the form", function () {
             //Arrange
             /*
             Clicking the button just sends a console.log statement
